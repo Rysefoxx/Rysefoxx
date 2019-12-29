@@ -1,0 +1,145 @@
+#%Spieler% ist die Person, die gebannt wird. %GebanntVon% ist der Spieler der den Command ausführt.
+#%Reason% ist die angegebene Reason von dem Spieler.
+
+#Broadcastmessage wenn der Spieler gebannt wird.
+Ban Message:
+- "&4&lBAN &8- &cDer Spieler &4%Spieler% &cwurde von &4%GebanntVon% &cgebannt!"
+- "&4&lBAN &8- &cGrund &8| &4%Reason%"
+
+#Broadcastmessage wenn der Spieler entbannt wird.
+Unban Message: "&4&lBAN &8- &cDer Spieler &4%Spieler% &cwurde von &4%UnbannedBy% &centbannt!"
+
+#Dies erhält der Spieler, wenn er einen Spieler bannt / unbannt.
+Player Ban Message: "&4&lBAN &8- &cDu hast erfolgreich &4%Spieler% &cgebannt."
+Player Unban Message: "&4&lBAN &8- &cDu hast erfolgreich &4%Spieler% &centbannt."
+
+CustomReasonInv:
+   Inventory name: "&6&lBan Vorschläge"
+   Insult:
+     name: "&7Grund &8| &cInsult"
+     Lore list:
+     - "&7Wenn du dies akzeptierst, wird der Spieler für &4&lINSULT &7gebannt"
+     - ""
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - "&cName&8: &4%Spieler%"
+     - "&cGrund&8: &4Insult"
+     - "&cBan Zeit&8: &4%BanTime% %Format%"
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - ""
+     - "&7Linksklick &8- &eBannt den Spieler mit dem Grund Insult"
+     
+   Hacks:
+     name: "&7Grund &8| &cHacks"
+     Lore list:
+     - "&7Wenn du dies akzeptierst, wird der Spieler für &4&lHACKS &7gebannt"
+     - ""
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - "&cName&8: &4%Spieler%"
+     - "&cGrund&8: &4Hacks"
+     - "&cBan Zeit&8: &4%BanTime% %Format%"
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - ""
+     - "&7Linksklick &8- &eBannt den Spieler mit dem Grund Hacks"
+
+BanStatus:
+#Wenn WithInventory true ist, öffnet sich ein extra GUI, was du unten einstellen kannst.
+#Wenn WithInventory false ist, erhälst du alle Infos per Chat.
+    WithInventory: true
+    Inventory name: "&6&lBan Informationen"
+    Sign name: "&cBan Informationen über %Spieler%"
+    Lore list:
+    - "&7Hier findest du alle Ban Informationen über %Spieler%"
+    - ""
+    - "&cGebannt von&8: &4%BannedBy%"
+    - "&cReason&8: &4%Reason%"
+    - "&cVerbleibene Zeit&8: &4%getTime%"
+#Das sind alle Informationen, die dir ausgegeben werden, wenn WithInventory auf false ist.
+    BanInfo:
+      Name: "&cSpieler&8: §8» &4%Spieler%"
+      Gebannt von: "&cGebannt von&8: §8» &4%BannedBy%"
+      Reason: "&cGrund&8: §8» &4%Reason%"
+#Header wird gebraucht, wenn bei WithInventory ein false steht.
+    Header: "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+
+
+#Dies ist eine Fehlermeldung, die auftaucht, wenn der Spieler eine falsche Einheit benutzt.
+
+Zeiteinheiten: "&4&lBAN &8- &cVerfuegbare Zeiteinheiten&8: [&cM&8/&cH&8/&cD&8/&cW&8]"
+
+#Der gebannte Spieler erhält diese Message, wenn er gebannt ist und versucht zu joinen.
+#Über %getGebanntvon% erhält er den Namen von der Person, die ihn gebannt hat.
+#%getTime% gibt die verbleibene Zeit an.
+#%BanReason% gibt den Ban Grund an.
+
+PlayerPreLoginEvent:
+    List:
+    - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+    - ""
+    - "&cDu bist aufgrund von Fehlverhalten vom Server ausgeschlossen."
+    - ""
+    - "&cDu wurdest von &4%getGebanntvon% &cgebannt!"
+    - ""
+    - "&cGrund: &4%BanReason%"
+    - ""
+    - "&cVerbleibene Zeit: &4%getTime%"
+    - ""
+    - "&7Wenn du denkst, dass dies eine Fehlentscheidung ist."
+    - "&7Melde dich bei der Person, die dich gebannt hat!"
+    - ""
+    - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+
+PlayerKickMessage:
+    List:
+    - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+    - ""
+    - "&cDu bist aufgrund von Fehlverhalten vom Server ausgeschlossen."
+    - ""
+    - "&cDu wurdest von &4%getGebanntvon% &cgebannt!"
+    - ""
+    - "&cGrund: &4%BanReason%"
+    - ""
+    - "&cVerbleibene Zeit: &4%getTime%"
+    - ""
+    - "&7Wenn du denkst, dass dies eine Fehlentscheidung ist."
+    - "&7Melde dich bei der Person, die dich gebannt hat!"
+    - ""
+    - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+Settings:
+#Bei true wird der Spieler beim Ban gekickt, bei false nicht.
+    KickSpieler: true
+#Wenns auf true ist, werden die Werte von Min/MaxReasonLength berücksichtigt.
+    UseReasonLength: true
+#Der Grund beim Bann muss mindestens 4 Wörter / Zahlen beinhalten.
+    MinReasonLength: 4
+#Der Grund beim Bann darf maximal 10 Wörter / Zahlen beinhalten.
+    MaxReasonLength: 10
+#Fehlermeldung, wenn die Werte von Min/MaxReasonLength nicht eingehalten werden.
+    ReasonLengthMessage: "&4&lBAN &8- &cDer Grund muss mind. 3 Wörter/Zahlen lang sein und darf maximal 10 Wörter groß sein."
+#Diese Nachricht erhält man, wenn man die Config reloaded.
+    ReloadMessage: "&4&lBAN &8- &cDu hast erfolgreich die Config reloaded."
+#Bei false werden dir Ban Gründe vorgeschlagen. Du kannst keine eigenen mehr angeben.
+    CustomBanReasons: true
+    CustomBanReasonsMessage: "&4&lBAN &8- &cBitte setze CustomBanReasons auf false, oder nutze alle benötigten Argumente."
+#Bei true wird die Broadcastmessage nicht angezeigt.
+    StealthBroadcastMessage: false
+#Bei true wird die Unban Broadcastmessage nicht angezeigt.
+    StealthUnbanBroadcastMessage: false
+#Diese Nachricht erhält man, wenn der Spieler die Permission nicht hat.
+    Keine Rechte: "&4&lBAN &8- &cDu hast keinen Zugriff auf diesen Befehl."
+#Diese Nachricht erhält man, wenn der Spieler noch nie auf dem Server war.
+    Spieler existiert nicht: "&4&lBAN &8- &cDer Spieler &4%Spieler% &cwar noch nie auf dem Server."
+#Diese Nachricht erhält man, wenn die angegebenen Parameter ungültig sind.
+    NumberFormatException: "&4&lBAN &8- &cBitte gebe eine gültige Zahl an."
+#Diese Nachricht erhält man, wenn die Person nicht gebannt ist, aber man sie unbannen will.
+    Spieler ist nicht gebannt: "&4&lBAN &8- &cDer Spieler &4%Spieler% &cist nicht gebannt."
+#Diese Nachricht erhält man, wenn die Person bereits gebannt ist.
+    Spieler ist gebannt: "&4&lBAN &8- &cDer Spieler &4%Spieler% &cist bereits gebannt."
+#Diese Nachricht erhält man, wenn du zu viele / zu wenige Argumente benutzt.
+    Unban Usage: "&4&lBAN &8- &cBitte verwende&8: /&4Unban &8<&4Spieler&8>"
+#Diese Nachricht erhält man, wenn du zu viele / zu wenige Argumente benutzt.
+#Beispiel: Tempban RyseFoxx 5m Hacks (5 Minuten Bann)
+    Tempban Usage: "&4&lBAN &8- &cBitte verwende&8: /&4Tempban &8<&4Spieler&8> <&4Zeit&8> <&4Grund&8>"
+#Diese Nachricht erhält man, wenn du zu viele / zu wenige Argumente benutzt.
+    BanStatus Usage: "&4&lBAN &8- &cBitte verwende&8: /&4BanStatus &8<&4Spieler&8>"
+#Diese Nachricht erhält man, wenn die Console einen Befehl eingibt der nur für User ist.
+    SenderMessage: "&4&lBAN &8- &cDen Befehl kann nur ein Spieler ausführen."
