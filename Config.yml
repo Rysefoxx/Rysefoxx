@@ -2,19 +2,54 @@
 #%Reason% ist die angegebene Reason von dem Spieler.
 
 #Broadcastmessage wenn der Spieler gebannt wird.
+StealthBroadcastMessage: false
 Ban Message:
 - "&4&lBAN &8- &cDer Spieler &4%Spieler% &cwurde von &4%GebanntVon% &cgebannt!"
 - "&4&lBAN &8- &cGrund &8| &4%Reason%"
 
-#Broadcastmessage wenn der Spieler entbannt wird.
+
+#Bei true wird die Unban Broadcastmessage nicht angezeigt.
+StealthUnbanBroadcastMessage: false
 Unban Message: "&4&lBAN &8- &cDer Spieler &4%Spieler% &cwurde von &4%UnbannedBy% &centbannt!"
+
 
 #Dies erhält der Spieler, wenn er einen Spieler bannt / unbannt.
 Player Ban Message: "&4&lBAN &8- &cDu hast erfolgreich &4%Spieler% &cgebannt."
 Player Unban Message: "&4&lBAN &8- &cDu hast erfolgreich &4%Spieler% &centbannt."
 
+
 CustomReasonInv:
+#Bei false werden dir Ban Gründe vorgeschlagen. Du kannst keine eigenen mehr angeben.
+   CustomBanReasons: true
+   CustomBanReasonsMessage: "&4&lBAN &8- &cBitte setze CustomBanReasons auf false, oder nutze alle benötigten Argumente."
    Inventory name: "&6&lBan Vorschläge"
+   
+   Sonstiges:
+     name: "&7Grund &8| &cSonstiges"
+     Lore list:
+     - "&7Wenn du dies akzeptierst, wird der Spieler für &4&lSONSTIGES &7gebannt"
+     - ""
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - "&cName&8: &4%Spieler%"
+     - "&cGrund&8: &4Sonstiges"
+     - "&cBan Zeit&8: &4%BanTime% %Format%"
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - ""
+     - "&7Linksklick &8- &eBannt den Spieler mit dem Grund Sonstiges"
+     
+   Bugusing:
+     name: "&7Grund &8| &cBugusing"
+     Lore list:
+     - "&7Wenn du dies akzeptierst, wird der Spieler für &4&lBUGUSING &7gebannt"
+     - ""
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - "&cName&8: &4%Spieler%"
+     - "&cGrund&8: &4Bugusing"
+     - "&cBan Zeit&8: &4%BanTime% %Format%"
+     #Grund, Name und Ban Zeit müssen so bleiben wie sie sind! 
+     - ""
+     - "&7Linksklick &8- &eBannt den Spieler mit dem Grund Bugusing"
+     
    Insult:
      name: "&7Grund &8| &cInsult"
      Lore list:
@@ -41,6 +76,7 @@ CustomReasonInv:
      - ""
      - "&7Linksklick &8- &eBannt den Spieler mit dem Grund Hacks"
 
+
 BanStatus:
 #Wenn WithInventory true ist, öffnet sich ein extra GUI, was du unten einstellen kannst.
 #Wenn WithInventory false ist, erhälst du alle Infos per Chat.
@@ -63,14 +99,13 @@ BanStatus:
 
 
 #Dies ist eine Fehlermeldung, die auftaucht, wenn der Spieler eine falsche Einheit benutzt.
-
 Zeiteinheiten: "&4&lBAN &8- &cVerfuegbare Zeiteinheiten&8: [&cM&8/&cH&8/&cD&8/&cW&8]"
+
 
 #Der gebannte Spieler erhält diese Message, wenn er gebannt ist und versucht zu joinen.
 #Über %getGebanntvon% erhält er den Namen von der Person, die ihn gebannt hat.
 #%getTime% gibt die verbleibene Zeit an.
 #%BanReason% gibt den Ban Grund an.
-
 PlayerPreLoginEvent:
     List:
     - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
@@ -104,10 +139,12 @@ PlayerKickMessage:
     - "&7Melde dich bei der Person, die dich gebannt hat!"
     - ""
     - "&7[]&8&m---------- &r&4&l BAN &8&m----------&r&7[]"
+    
+    
 Settings:
 #Bei true wird der Spieler beim Ban gekickt, bei false nicht.
     KickSpieler: true
-#Wenns auf true ist, werden die Werte von Min/MaxReasonLength berücksichtigt.
+#Wenn UseReasonLength auf true ist, werden die Werte von Min/MaxReasonLength berücksichtigt.
     UseReasonLength: true
 #Der Grund beim Bann muss mindestens 4 Wörter / Zahlen beinhalten.
     MinReasonLength: 4
@@ -117,13 +154,6 @@ Settings:
     ReasonLengthMessage: "&4&lBAN &8- &cDer Grund muss mind. 3 Wörter/Zahlen lang sein und darf maximal 10 Wörter groß sein."
 #Diese Nachricht erhält man, wenn man die Config reloaded.
     ReloadMessage: "&4&lBAN &8- &cDu hast erfolgreich die Config reloaded."
-#Bei false werden dir Ban Gründe vorgeschlagen. Du kannst keine eigenen mehr angeben.
-    CustomBanReasons: true
-    CustomBanReasonsMessage: "&4&lBAN &8- &cBitte setze CustomBanReasons auf false, oder nutze alle benötigten Argumente."
-#Bei true wird die Broadcastmessage nicht angezeigt.
-    StealthBroadcastMessage: false
-#Bei true wird die Unban Broadcastmessage nicht angezeigt.
-    StealthUnbanBroadcastMessage: false
 #Diese Nachricht erhält man, wenn der Spieler die Permission nicht hat.
     Keine Rechte: "&4&lBAN &8- &cDu hast keinen Zugriff auf diesen Befehl."
 #Diese Nachricht erhält man, wenn der Spieler noch nie auf dem Server war.
